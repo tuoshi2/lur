@@ -37,7 +37,7 @@ poly_area <- function(points, IDs, buffer_size, polygons, categories,
   sf::st_geometry(intersectPolyArea) <- NULL
 
   # Group and sum up the areas by ID and Category
-  areaGrouped <- dplyr::group_by_(intersectPolyArea, IDs, categories)
+  areaGrouped <- dplyr::group_by(intersectPolyArea, IDs, categories)
   areaGrouped <- dplyr::summarise(areaGrouped, area = round(sum(area), 2))
 
   # Pivot table
