@@ -39,11 +39,11 @@ line_length <- function(points, IDs, buffer_size, lines, categories,
   sf::st_geometry(intersectLineLength) <- NULL
 
   # Group and sum up the lengths by ID and Category
-  lengthGrouped <- dplyr::group_by_(intersectLineLength, IDs, categories)
+  lengthGrouped <- dplyr::group_by(intersectLineLength, IDs, categories)
   lengthGrouped <- dplyr::summarise(lengthGrouped, length = round(sum(length), 2))
 
   # Pivot table
-  lengthSpread <- tidyr::spread_(lengthGrouped, categories, "length")
+  lengthSpread <- tidyr::spread(lengthGrouped, categories, "length")
 
   # Set NA to Zero
   lengthSpread[is.na(lengthSpread)] <- 0
