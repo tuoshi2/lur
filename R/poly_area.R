@@ -41,7 +41,7 @@ poly_area <- function(points, IDs, buffer_size, polygons, categories,
   areaGrouped <- dplyr::summarise(areaGrouped, area = round(sum(area), 2))
 
   # Pivot table
-  areaSpread <- tidyr::spread_(areaGrouped, categories, "area")
+  areaSpread <- tidyr::spread(areaGrouped, categories, "area")
 
   # Set NA to Zero
   areaSpread[is.na(areaSpread)] <- 0
